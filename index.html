@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: black;
+        }
+
+        .container {
+            background-color: orchid;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: white;
+        }
+
+        label{
+            color: rgb(109, 50, 83);
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: darkviolet;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Age Calculator</h1>
+        <label for="birthdate">Enter your birthdate:</label>
+        <input type="date" id="birthdate">
+        <button onclick="calculateAge()" id="calculateButton">Calculate Age</button>
+        <button onclick="clearAll()">Clear All</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateAge() {
+            const birthdate = new Date(document.getElementById("birthdate").value);
+            const today = new Date();
+            const ageInMilliseconds = today - birthdate;
+            const ageInYears = ageInMilliseconds / (365 * 24 * 60 * 60 * 1000);
+            const age = Math.floor(ageInYears);
+
+            document.getElementById("result").textContent = `Your age is ${age} years.`;
+
+            // Disable the "Calculate Age" button after clicking it
+            document.getElementById("calculateButton").disabled = true;
+        }
+
+        function clearAll() {
+            // Clear the birthdate input
+            document.getElementById("birthdate").value = "";
+
+            // Clear the age result
+            document.getElementById("result").textContent = "";
+
+            // Enable the "Calculate Age" button
+            document.getElementById("calculateButton").disabled = false;
+        }
+    </script>
+</body>
+</html>
+-
